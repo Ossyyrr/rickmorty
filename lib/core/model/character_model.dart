@@ -92,13 +92,13 @@ class Location {
       };
 }
 
-enum Species { HUMAN, ALIEN }
+enum Species { human, alien }
 
-final speciesValues = EnumValues({"Alien": Species.ALIEN, "Human": Species.HUMAN});
+final speciesValues = EnumValues({"Alien": Species.alien, "Human": Species.human});
 
-enum Status { ALIVE, UNKNOWN, DEAD }
+enum Status { alive, unknown, dead }
 
-final statusValues = EnumValues({"Alive": Status.ALIVE, "Dead": Status.DEAD, "unknown": Status.UNKNOWN});
+final statusValues = EnumValues({"Alive": Status.alive, "Dead": Status.dead, "unknown": Status.unknown});
 
 class EnumValues<T> {
   Map<String, T> map;

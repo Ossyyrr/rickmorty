@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rickmorty/ui/pages/characters_page/characters_page.dart';
 import 'package:rickmorty/ui/pages/home_page/home_page.dart';
 
@@ -13,6 +14,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        fontFamily: GoogleFonts.patrickHand().fontFamily,
       ),
       initialRoute: '/',
       routes: {
