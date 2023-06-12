@@ -3,16 +3,16 @@ import 'dart:convert';
 class Character {
   int id;
   String name;
-  Status status;
-  Species species;
-  String type;
-  Gender gender;
-  Location origin;
-  Location location;
+  Status? status;
+  Species? species;
+  String? type;
+  Gender? gender;
+  Location? origin;
+  Location? location;
   String image;
-  List<String> episode;
-  String url;
-  DateTime created;
+  List<String>? episode;
+  String? url;
+  DateTime? created;
 
   Character({
     required this.id,
@@ -36,10 +36,10 @@ class Character {
   factory Character.fromMap(Map<String, dynamic> json) => Character(
         id: json["id"],
         name: json["name"],
-        status: statusValues.map[json["status"]]!,
-        species: speciesValues.map[json["species"]]!,
+        status: statusValues.map[json["status"]],
+        species: speciesValues.map[json["species"]],
         type: json["type"],
-        gender: genderValues.map[json["gender"]]!,
+        gender: genderValues.map[json["gender"]],
         origin: Location.fromMap(json["origin"]),
         location: Location.fromMap(json["location"]),
         image: json["image"],
@@ -55,12 +55,12 @@ class Character {
         "species": speciesValues.reverse[species],
         "type": type,
         "gender": genderValues.reverse[gender],
-        "origin": origin.toMap(),
-        "location": location.toMap(),
+        "origin": origin?.toMap(),
+        "location": location?.toMap(),
         "image": image,
-        "episode": List<dynamic>.from(episode.map((x) => x)),
+        "episode": List<dynamic>.from(episode!.map((x) => x)),
         "url": url,
-        "created": created.toIso8601String(),
+        "created": created?.toIso8601String(),
       };
 }
 

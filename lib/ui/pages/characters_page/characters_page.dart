@@ -14,9 +14,9 @@ class CharactersPage extends StatelessWidget {
         child: NotificationListener<ScrollEndNotification>(
           onNotification: (notification) {
             print(notification.metrics.extentAfter);
-            if (notification.metrics.extentAfter < 200) {
-              // Añadir Characters
-              print('Final del scroll');
+            if (notification.metrics.extentAfter < 400) {
+              debugPrint('Final del scroll');
+              CharacterRepository.getCharacters();
             }
             return true;
           },
