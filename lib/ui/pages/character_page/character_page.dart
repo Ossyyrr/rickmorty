@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rickmorty/core/model/character_model.dart';
 import 'package:rickmorty/ui/pages/character_page/widget/character_appbar.dart';
 import 'package:rickmorty/ui/widget/animation_translation.dart';
+import 'package:rickmorty/ui/widget/character_image_hero.dart';
 
 class CharacterPage extends StatelessWidget {
   const CharacterPage({super.key});
@@ -11,20 +12,14 @@ class CharacterPage extends StatelessWidget {
     final Character character = ModalRoute.of(context)?.settings.arguments as Character;
     return Scaffold(
       body: SafeArea(
-        child: Stack(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Hero(
-              tag: character.id,
-              child: Image.network(
-                character.image,
-                fit: BoxFit.cover,
-                height: double.infinity,
-              ),
-            ),
-            Positioned(
-              left: 0,
-              top: 8,
-              child: AnimationTranslation(child: CharacterAppBar(character: character)),
+            AnimationTranslation(child: CharacterAppBar(character: character)),
+            Container(
+              margin: const EdgeInsets.all(16),
+              child: CharacterImageHero(character: character, height: 200, width: 200),
             ),
           ],
         ),

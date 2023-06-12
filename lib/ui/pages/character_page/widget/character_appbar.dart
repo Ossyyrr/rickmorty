@@ -20,20 +20,22 @@ class CharacterAppBar extends StatelessWidget {
         color: Colors.black38,
       ),
       padding: const EdgeInsets.only(left: 8, right: 24, top: 8, bottom: 8),
+      margin: const EdgeInsets.symmetric(vertical: 8),
       alignment: Alignment.topRight,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 32),
           ),
-          Text(
-            character.name,
-            textAlign: TextAlign.right,
-            style: const TextStyle(fontSize: 32, color: Colors.white),
+          Expanded(
+            child: Text(
+              character.name,
+              textAlign: TextAlign.right,
+              style: const TextStyle(fontSize: 32, color: Colors.white),
+            ),
           ),
         ],
       ),

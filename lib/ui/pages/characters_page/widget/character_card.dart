@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rickmorty/core/model/character_model.dart';
+import 'package:rickmorty/ui/widget/character_image_hero.dart';
 
 class CharacterCard extends StatelessWidget {
   final Character character;
@@ -28,15 +29,7 @@ class CharacterCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
           child: Stack(
             children: [
-              Hero(
-                tag: character.id,
-                child: Image.network(
-                  character.image,
-                  fit: BoxFit.cover,
-                  width: (MediaQuery.of(context).size.width / 2) - 20,
-                  height: 140,
-                ),
-              ),
+              CharacterImageHero(character: character),
               Positioned(
                 bottom: 0,
                 right: 0,
