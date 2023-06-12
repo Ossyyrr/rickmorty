@@ -12,7 +12,7 @@ class App extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff16acc9)),
         useMaterial3: true,
         fontFamily: GoogleFonts.patrickHand().fontFamily,
       ),

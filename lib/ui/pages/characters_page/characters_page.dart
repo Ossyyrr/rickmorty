@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:rickmorty/core/model/character_model.dart';
 import 'package:rickmorty/data/repository/character_repository.dart';
-import 'package:rickmorty/ui/pages/characters_page/widget/character_card.dart';
+import 'package:rickmorty/ui/pages/characters_page/widget/characters_wrap.dart';
+import 'package:rickmorty/ui/widget/loader.dart';
 
-class CharactersPage extends StatelessWidget {
+class CharactersPage extends StatefulWidget {
   const CharactersPage({super.key});
+
+  @override
+  State<CharactersPage> createState() => _CharactersPageState();
+}
+
+class _CharactersPageState extends State<CharactersPage> {
+  bool isLoading = false;
+  Future<void> loadMoreCharacters() async {
+    setState(() => isLoading = true);
+    await CharacterRepository.getCharacters();
+    setState(() => isLoading = false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,50 +24,21 @@ class CharactersPage extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 240, 252, 255),
       body: SafeArea(
         child: NotificationListener<ScrollEndNotification>(
-          onNotification: (notification) {
-            if (notification.metrics.extentAfter < 400) {
-              debugPrint('Final del scroll');
-              CharacterRepository.getCharacters();
-            }
-            return true;
-          },
-          child: SingleChildScrollView(
-            child: Column(
+            onNotification: (notification) {
+              if (notification.metrics.extentAfter < 500) {
+                debugPrint('Final del scroll');
+                loadMoreCharacters();
+              }
+              return true;
+            },
+            child: Stack(
+              alignment: Alignment.bottomCenter,
               children: [
-                Image.asset(
-                  'assets/rickmorty.png',
-                  height: 100,
-                ),
-                const SizedBox(height: 24),
-                StreamBuilder<List<Character>>(
-                    stream: CharacterRepository.characterStream,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasError) {
-                        return Center(child: Text(snapshot.error.toString()));
-                      }
-                      if (!snapshot.hasData) {
-                        CharacterRepository.getCharacters();
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      final characters = snapshot.data;
-                      return Center(
-                        child: Wrap(
-                          runSpacing: 16,
-                          spacing: 16,
-                          children: characters!.map((character) {
-                            return CharacterCard(character: character);
-                          }).toList(),
-                        ),
-                      );
-                    }),
+                const CharactersWrap(),
+                if (isLoading) const Loader(),
               ],
-            ),
-          ),
-        ),
+            )),
       ),
     );
   }
 }
-
