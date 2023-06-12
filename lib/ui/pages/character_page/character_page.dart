@@ -11,6 +11,7 @@ class CharacterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Character character = ModalRoute.of(context)?.settings.arguments as Character;
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 240, 252, 255),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

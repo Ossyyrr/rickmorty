@@ -9,10 +9,10 @@ class CharactersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 240, 252, 255),
       body: SafeArea(
         child: NotificationListener<ScrollEndNotification>(
           onNotification: (notification) {
-            print(notification.metrics.extentAfter);
             if (notification.metrics.extentAfter < 400) {
               debugPrint('Final del scroll');
               CharacterRepository.getCharacters();
@@ -58,3 +58,4 @@ class CharactersPage extends StatelessWidget {
     );
   }
 }
+
