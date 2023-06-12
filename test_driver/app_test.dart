@@ -13,11 +13,11 @@ void main() {
       driver.close();
     });
 
-    final SerializableFinder rickSanchez = find.text("Rick Sanchez");
-
-    test("Entrar en el detalle de Rick", () async {
-      await driver.tap(rickSanchez);
+    test("Entrar en el detalle de Rick, volver atrás y entrar en el detalle de Morty", () async {
+      await driver.tap(find.text("Rick Sanchez"));
       await driver.waitFor(find.text("Rick Sanchez"));
+      await driver.tap(find.byValueKey('characterBack'));
+      await driver.waitFor(find.text("Morty Smith"));
     });
   });
 }
