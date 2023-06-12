@@ -10,15 +10,16 @@ class CharactersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('CharactersPage')),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomRight,
-            colors: [Colors.white, Color.fromARGB(255, 255, 234, 196)],
-          ),
-        ),
-        child: SafeArea(
+      body: SafeArea(
+        child: NotificationListener<ScrollEndNotification>(
+          onNotification: (notification) {
+            print(notification.metrics.extentAfter);
+            if (notification.metrics.extentAfter < 200) {
+              // Añadir Characters
+              print('Final del scroll');
+            }
+            return true;
+          },
           child: SingleChildScrollView(
             child: StreamBuilder<List<Character>>(
                 stream: CharacterRepository.characterStream,
