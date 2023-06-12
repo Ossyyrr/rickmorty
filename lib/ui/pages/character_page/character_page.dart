@@ -13,16 +13,28 @@ class CharacterPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 240, 252, 255),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            AnimationTranslation(child: CharacterAppBar(character: character)),
-            Container(
-              margin: const EdgeInsets.all(16),
-              child: CharacterImageHero(character: character, height: 200, width: 200),
-            ),
-          ],
+        child: Container(
+          margin: const EdgeInsets.all(16),
+          child: Wrap(
+            spacing: 16,
+            runSpacing: 16,
+            children: [
+              AnimationTranslation(child: CharacterAppBar(character: character)),
+              CharacterImageHero(character: character, height: 200, width: 200),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Detalles:',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                  Text('Especie: ${character.species?.name.toUpperCase() ?? '-'}'),
+                  Text('Estado: ${character.status?.name.toUpperCase() ?? '-'}'),
+                  Text('Ubicación: ${character.location?.name.toUpperCase() ?? '-'}'),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
