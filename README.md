@@ -14,3 +14,10 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+Para los test de integración:
+flutter drive -d emulator-5554 --target=test_driver/app.dart
+
+Para saber que devices tengo:
+flutter devices
