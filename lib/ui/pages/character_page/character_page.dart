@@ -27,10 +27,7 @@ class CharacterPage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Detalles:',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                      ),
+                      const Text('Detalles:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                       Text('Especie: ${character.species?.name.toUpperCase() ?? '-'}'),
                       Text('Estado: ${character.status?.name.toUpperCase() ?? '-'}'),
                       Text('Ubicación: ${character.location?.name.toUpperCase() ?? '-'}'),

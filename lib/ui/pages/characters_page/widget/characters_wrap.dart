@@ -17,28 +17,29 @@ class CharactersWrap extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           StreamBuilder<List<Character>>(
-              stream: CharacterRepository.characterStream,
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return Center(child: Text(snapshot.error.toString()));
-                }
-                if (!snapshot.hasData) {
-                  CharacterRepository.getCharacters();
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                final characters = snapshot.data;
-                return Center(
-                  child: Wrap(
-                    runSpacing: 16,
-                    spacing: 16,
-                    children: characters!.map((character) {
-                      return CharacterCard(character: character);
-                    }).toList(),
-                  ),
+            stream: CharacterRepository.characterStream,
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return Center(child: Text(snapshot.error.toString()));
+              }
+              if (!snapshot.hasData) {
+                CharacterRepository.getCharacters();
+                return const Center(
+                  child: CircularProgressIndicator(),
                 );
-              }),
+              }
+              final characters = snapshot.data;
+              return Center(
+                child: Wrap(
+                  runSpacing: 16,
+                  spacing: 16,
+                  children: characters!.map((character) {
+                    return CharacterCard(character: character);
+                  }).toList(),
+                ),
+              );
+            },
+          ),
         ],
       ),
     );

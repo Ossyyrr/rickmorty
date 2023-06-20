@@ -24,20 +24,21 @@ class _CharactersPageState extends State<CharactersPage> {
       backgroundColor: const Color.fromARGB(255, 240, 252, 255),
       body: SafeArea(
         child: NotificationListener<ScrollEndNotification>(
-            onNotification: (notification) {
-              if (notification.metrics.extentAfter < 500) {
-                debugPrint('Final del scroll');
-                loadMoreCharacters();
-              }
-              return true;
-            },
-            child: Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                const CharactersWrap(),
-                if (isLoading) const Loader(),
-              ],
-            )),
+          onNotification: (notification) {
+            if (notification.metrics.extentAfter < 500) {
+              debugPrint('Final del scroll');
+              loadMoreCharacters();
+            }
+            return true;
+          },
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              const CharactersWrap(),
+              if (isLoading) const Loader(),
+            ],
+          ),
+        ),
       ),
     );
   }
